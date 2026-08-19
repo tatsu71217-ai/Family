@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   家族関係の地図 — デザイントークン
+   「ゆるい・シンプル・安心感」。白〜淡い背景／丸みのあるカード／広い余白。
+   ------------------------------------------------------------------ */
+
+@theme {
+  --color-paper: #fbf8f4;
+  --color-paper-deep: #f4efe7;
+  --color-surface: #ffffff;
+  --color-line: #ece5db;
+  --color-line-soft: #f4efe7;
+
+  --color-ink: #3d3733;
+  --color-ink-soft: #6f665e;
+  --color-ink-faint: #9a938b;
+
+  --color-sage: #7fa88e;
+  --color-sage-deep: #5d8b72;
+  --color-sage-soft: #e8f1ea;
+
+  --color-sky: #8fa9c9;
+  --color-sky-soft: #e9eef6;
+
+  --color-sand: #cbae8b;
+  --color-sand-soft: #f6efe4;
+
+  --color-rose: #d3a0a0;
+  --color-rose-soft: #f8ecec;
+
+  --color-lilac: #a99ac9;
+  --color-lilac-soft: #f0ecf7;
+
+  --color-stone: #b3aca4;
+  --color-stone-soft: #f2efeb;
+
+  --radius-card: 20px;
+  --radius-soft: 16px;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", Meiryo, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+
+/* ホーム画面から起動したとき（standalone）は、上部のステータスバーぶんだけ内容を下げる */
+@media (display-mode: standalone) {
+  body {
+    padding-top: var(--safe-top);
+  }
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* タップ後の待ち時間とダブルタップ拡大を抑える（拡大自体は無効にしない） */
+button,
+a,
+[role="button"],
+[role="radio"],
+label,
+summary {
+  touch-action: manipulation;
+}
+
+/* iOS の慣性スクロールを保つ */
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "palt" 1;
+  line-height: 1.75;
+  overscroll-behavior-y: none;
+}
+
+/* フォーカスリングは常に見えるように（アクセシビリティ） */
+:focus-visible {
+  outline: 2px solid var(--color-sage-deep);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* スクロールバーをやわらかく */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes soft-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility animate-soft-in {
+  animation: soft-in 0.32s ease-out both;
+}
+
+@keyframes overlay-in {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes sheet-in {
+  from { opacity: 0; transform: translateY(16px) }
+  to { opacity: 1; transform: none }
+}

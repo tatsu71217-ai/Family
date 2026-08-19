@@ -1,0 +1,24 @@
+{
+  "name": "家族関係の地図",
+  "short_name": "家族の地図",
+  "description": "家族を責めるのではなく、家族を理解するための地図。関係・出来事・感情・課題を整理して、小さな行動につなげます。",
+  "lang": "ja",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fbf8f4",
+  "theme_color": "#fbf8f4",
+  "categories": ["lifestyle", "productivity"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "関係マップ", "url": "/map" },
+    { "name": "感情を記録", "url": "/emotions" },
+    { "name": "今日の行動", "url": "/actions" }
+  ]
+}
