@@ -13,6 +13,8 @@ import { EmotionPie } from "@/components/charts/emotion-charts";
 import { actionStatusMap, emotionMap } from "@/lib/constants";
 import { useData } from "@/lib/store/provider";
 import { useSheetForm } from "@/hooks/use-sheet-form";
+import { hasSafetySignal } from "@/lib/safety";
+import { SupportNotice } from "@/components/support/support-notice";
 import { emotionDistribution, memberName, organizeSummary, reviewStats } from "@/lib/insights";
 import type { ReviewNote } from "@/lib/types";
 import { createId, formatDate, nowIso, sortByDateDesc, todayInput, trimOrNull } from "@/lib/utils";
@@ -35,6 +37,8 @@ export default function ReviewPage() {
 
   return (
     <AppPage title="振り返り" subtitle="この1か月に何があって、何が少し動いたかを見ます。" back="/">
+      {hasSafetySignal(data) ? <SupportNotice /> : null}
+
       <Card className="bg-sage-soft/40">
         <CardTitle>この1か月の整理</CardTitle>
         <CardDescription className="mt-1">
@@ -52,6 +56,19 @@ export default function ReviewPage() {
         <p className="mt-4 text-[12px] leading-relaxed text-ink-faint">
           このまとめは、あなたの端末の中で作られています。外部のサービスへは送っていません。
         </p>
+      </Card>
+
+      <SectionTitle href="/insights" linkLabel="気づきへ">
+        記録から見えること
+      </SectionTitle>
+      <Card>
+        <CardTitle>気づき・問いかけ・行動の提案</CardTitle>
+        <CardDescription className="mt-1">
+          記録から見えることを並べ、考えるための問いや、やってみられそうなことをお渡しします。
+        </CardDescription>
+        <Button asChild variant="outline" size="sm" className="mt-3">
+          <Link href="/insights">気づきを見る</Link>
+        </Button>
       </Card>
 
       <SectionTitle href="/emotions" linkLabel="感情整理へ">
