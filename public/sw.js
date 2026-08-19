@@ -2,7 +2,9 @@
    オフラインでも基本のUIが開けるように、アプリシェルと静的ファイルをキャッシュする。
    入力したデータ自体はここではなく、端末のストレージ（またはアカウント）に保存される。 */
 
-const VERSION = "v1";
+/* アプリの画面構成を変えたときは、このバージョンを上げること。
+   古いキャッシュが activate 時に破棄され、オフライン時にも新しい構成が出るようになる。 */
+const VERSION = "v2";
 const SHELL_CACHE = `kazoku-map-shell-${VERSION}`;
 const ASSET_CACHE = `kazoku-map-assets-${VERSION}`;
 
