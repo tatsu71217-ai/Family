@@ -8,6 +8,7 @@ import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { Field, Input } from "@/components/ui/field";
 import { ConfirmDialog } from "@/components/ui/confirm";
 import { useData } from "@/lib/store/provider";
+import { useInstallState } from "@/hooks/use-install-state";
 import type { FamilySnapshot } from "@/lib/types";
 
 const RULES = [
@@ -33,9 +34,19 @@ export default function SettingsPage() {
   const familyName = data?.family.name ?? "";
   const [name, setName] = React.useState(familyName);
   const [lastFamilyName, setLastFamilyName] = React.useState(familyName);
+  const { isIos, isStandalone } = useInstallState();
+  const [persisted, setPersisted] = React.useState<boolean | null>(null);
   const [confirm, setConfirm] = React.useState<"demo" | "empty" | null>(null);
   const [importError, setImportError] = React.useState<string | null>(null);
   const fileRef = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    if (!("storage" in navigator) || !navigator.storage.persisted) return;
+    navigator.storage
+      .persisted()
+      .then(setPersisted)
+      .catch(() => setPersisted(null));
+  }, []);
 
   // 読み込み完了や名前の変更に、描画中に合わせる
   if (lastFamilyName !== familyName) {
@@ -121,9 +132,21 @@ export default function SettingsPage() {
               <>
                 <CardTitle>この端末の中だけに保存しています</CardTitle>
                 <CardDescription className="mt-1">
-                  記録はブラウザの中に保存され、どこにも送信されません。
-                  端末を変えても引き継ぐには、下から書き出して読み込んでください。
+                  記録はこのブラウザの中に保存され、どこにも送信されません。
+                  端末やブラウザを変えると引き継がれないので、下から書き出して読み込んでください。
                 </CardDescription>
+                {persisted === false ? (
+                  <p className="mt-2 text-[12px] leading-relaxed text-ink-faint">
+                    {isIos && !isStandalone
+                      ? "しばらく開かないと、ブラウザが記録を消してしまうことがあります。ホーム画面に追加しておくと消えにくくなります。"
+                      : "しばらく開かないと、ブラウザが記録を消してしまうことがあります。大事な内容は書き出しておくと安心です。"}
+                  </p>
+                ) : null}
+                {persisted === true ? (
+                  <p className="mt-2 text-[12px] leading-relaxed text-ink-faint">
+                    この端末では、記録が自動で消えないよう保護されています。
+                  </p>
+                ) : null}
               </>
             )}
           </div>

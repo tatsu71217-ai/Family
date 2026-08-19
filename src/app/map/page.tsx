@@ -60,7 +60,7 @@ export default function MapPage() {
             selectedId={selectedId}
             onSelectMember={setSelectedId}
             onSelectRelationship={(relationship) => form.openForm(relationship)}
-            className="mx-auto aspect-[4/5] w-full md:max-w-[460px]"
+            className="mx-auto aspect-[4/5] max-h-[70dvh] w-full md:max-w-[460px]"
           />
 
           <div className="flex flex-wrap gap-1.5 px-1">

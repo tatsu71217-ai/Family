@@ -28,7 +28,8 @@ export function Field({
 }
 
 const controlClass =
-  "w-full rounded-[var(--radius-soft)] border border-line bg-surface px-4 py-3 text-[15px] text-ink placeholder:text-ink-faint transition-colors focus:border-sage focus:outline-none disabled:opacity-60";
+  // text-base(16px) は必須。iOS Safari は 16px 未満の入力欄にフォーカスすると画面を勝手に拡大する。
+  "w-full rounded-[var(--radius-soft)] border border-line bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-faint transition-colors focus:border-sage focus:outline-none disabled:opacity-60";
 
 export const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
   ({ className, ...props }, ref) => (

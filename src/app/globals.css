@@ -45,11 +45,34 @@
 :root {
   color-scheme: light;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+
+/* ホーム画面から起動したとき（standalone）は、上部のステータスバーぶんだけ内容を下げる */
+@media (display-mode: standalone) {
+  body {
+    padding-top: var(--safe-top);
+  }
 }
 
 html {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* タップ後の待ち時間とダブルタップ拡大を抑える（拡大自体は無効にしない） */
+button,
+a,
+[role="button"],
+[role="radio"],
+label,
+summary {
+  touch-action: manipulation;
+}
+
+/* iOS の慣性スクロールを保つ */
+body {
+  -webkit-overflow-scrolling: touch;
 }
 
 body {

@@ -3,7 +3,7 @@ import "./globals.css";
 import { DataProvider } from "@/lib/store/provider";
 import { AppShell } from "@/components/layout/app-shell";
 import { SaveIndicator } from "@/components/layout/save-indicator";
-import { ServiceWorker } from "@/components/layout/service-worker";
+import { PwaSetup } from "@/components/layout/pwa-setup";
 
 export const metadata: Metadata = {
   title: "家族関係の地図",
@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <AppShell>{children}</AppShell>
           <SaveIndicator />
         </DataProvider>
-        <ServiceWorker />
+        <PwaSetup />
       </body>
     </html>
   );

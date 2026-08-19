@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { MiniTrend } from "@/components/charts/emotion-charts";
+import { InstallHint } from "@/components/layout/install-hint";
 import {
   FAMILY_MOODS,
   IMPACT_LABELS,
@@ -46,6 +47,8 @@ export default function HomePage() {
 
   return (
     <AppPage title={family.name} subtitle={greeting()}>
+      <InstallHint />
+
       {isDemo ? (
         <Link
           href="/settings"
