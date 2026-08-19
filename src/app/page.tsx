@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { ArrowRight, CalendarClock, Heart, NotebookPen, Sparkles, Users } from "lucide-react";
+import { ArrowRight, CalendarClock, Heart, Lightbulb, NotebookPen, Sparkles, Users } from "lucide-react";
 import { AppPage, SectionTitle } from "@/components/layout/app-page";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
@@ -344,10 +344,12 @@ export default function HomePage() {
       {/* ほかの画面への導線 */}
       <SectionTitle>ほかの整理</SectionTitle>
       <div className="grid grid-cols-2 gap-2.5">
+        <QuickLink href="/insights" icon={Lightbulb} title="気づき" description="記録から見えること" />
         <QuickLink href="/timeline" icon={CalendarClock} title="出来事" description="時系列で見る" />
         <QuickLink href="/emotions" icon={Heart} title="感情整理" description="いまの気持ち" />
         <QuickLink href="/issues" icon={NotebookPen} title="課題整理" description="状況として書く" />
         <QuickLink href="/review" icon={Sparkles} title="振り返り" description="少しの変化を見る" />
+        <QuickLink href="/actions" icon={Sparkles} title="行動" description="小さくやってみる" />
       </div>
 
       {data.reviews.length ? (
