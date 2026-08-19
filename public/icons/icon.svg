@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="家族関係の地図">
+  <rect width="512" height="512" rx="112" fill="#7fa88e"/>
+  <g stroke="#e8f1ea" stroke-width="18" stroke-linecap="round">
+    <line x1="256" y1="256" x2="256" y2="106"/>
+    <line x1="256" y1="256" x2="386" y2="334"/>
+    <line x1="256" y1="256" x2="126" y2="334"/>
+  </g>
+  <g fill="#fbf8f4">
+    <circle cx="256" cy="256" r="62"/>
+    <circle cx="256" cy="106" r="44"/>
+    <circle cx="386" cy="334" r="44"/>
+    <circle cx="126" cy="334" r="44"/>
+  </g>
+</svg>
