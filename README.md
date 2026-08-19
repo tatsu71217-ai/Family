@@ -2,6 +2,11 @@
 
 家族内の関係・感情・出来事・課題を整理するための Web アプリ（PWA）です。
 
+**公開URL: https://kazoku-map.vercel.app**
+
+iPhone の Safari で開き、下部の共有ボタンから「ホーム画面に追加」を選ぶと、
+アプリと同じように全画面で使えます。
+
 **「家族を責めるのではなく、家族を理解するための地図」** をコンセプトに、
 文章だけでは掴みにくい家族関係を、カード・関係図・タイムライン・グラフとして可視化します。
 
@@ -127,6 +132,27 @@ src/
 supabase/migrations/   スキーマと RLS
 public/                manifest・アイコン・Service Worker
 ```
+
+## デプロイ
+
+Vercel の `kazoku-map` プロジェクトが GitHub リポジトリと連携しています。
+
+- `main` へ push すると production（https://kazoku-map.vercel.app）へ自動デプロイ
+- ほかのブランチへ push するとプレビュー環境が作られます
+
+Supabase を使う場合は、Vercel のプロジェクト設定 → Environment Variables に
+`NEXT_PUBLIC_SUPABASE_URL` と `NEXT_PUBLIC_SUPABASE_ANON_KEY` を追加してください。
+未設定のあいだは端末内保存で動きます。
+
+## iPhone での使い方
+
+1. Safari で https://kazoku-map.vercel.app を開く
+2. 下部の共有ボタンから「ホーム画面に追加」
+3. ホーム画面のアイコンから起動すると、アドレスバーの無い全画面で開きます
+
+ホーム画面に追加しておくと、Safari がしばらく使わないサイトのデータを
+消してしまう挙動の影響を受けにくくなります。
+大事な内容は、設定画面から JSON で書き出しておくとより安心です。
 
 ## コマンド
 
